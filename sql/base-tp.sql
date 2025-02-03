@@ -62,7 +62,7 @@ CREATE TABLE ImageAnimal (
     FOREIGN KEY (idAnimal) REFERENCES animal(idAnimal) ON DELETE CASCADE
 );
 
-INSERT INTO typeAnimal (espece, poids_minimal_vente, prix_vente_kg, poids_max, nb_jour_sans_manger, perte_poids_jour) VALUES
+INSERT INTO typeAnimal (espece, poids_minimal_vente, prix_vente_kg, poids_max, jours_sans_manger, perte_poids_jour) VALUES
 ('Boeuf', 150.00, 2.50, 1000.00, 10, 2.00),
 ('Mouton', 45.00, 3.00, 150.00, 8, 1.50),
 ('Poulet', 2.00, 5.00, 7.00, 5, 3.00),
