@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use app\models\Animal;
-use app\models\Espece;
+use app\models\TypeAnimal;
 
 use Flight;
 
@@ -13,12 +13,12 @@ class Controller {
     }
 
     public function acceuil() {
-        $types = Espece::getAllEspece();    
+        $types = TypeAnimal::getAllTypeAnimal();    
         $animals = Animal::getAll();    
     
         if (isset($_GET['idType'])) {
             $idType = $_GET['idType'];
-            $animals = Animal::getAllByEspeceId($idType);
+            $animals = Animal::getAllByTypeAnimalId($idType);
         }
     
         // if (isset($_GET['descri'])) {
@@ -27,7 +27,7 @@ class Controller {
         // }
 
         foreach ($animals as &$hb) {
-            $photos = Animal::getPhoto($hb['idAnimal']);            
+            $photos = Animal::getPhotos($hb['idAnimal']);            
             if (!empty($photos)) {
                 $hb['imgPrincipale'] = $photos[0];
             } else {

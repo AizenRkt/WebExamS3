@@ -19,7 +19,7 @@
             <div class="scroll-container">
                 <a href="<?= Flight::base() ?>/acceuil"><button class="filter-btn">all</button></a>
                 <?php foreach ($types as $x) { ?>
-                    <a href="<?= Flight::base() ?>/acceuil?idType=<?= $x['idEspece'] ?>"><button class="filter-btn"><?= $x['nomEspece'] ?></button></a>
+                    <a href="<?= Flight::base() ?>/acceuil?idType=<?= $x['idTypeAnimal'] ?>"><button class="filter-btn"><?= $x['espece'] ?></button></a>
                 <?php } ?>
             </div>
         </div>
@@ -33,8 +33,8 @@
                         <img src="<?= Flight::base() ?>/public/assets/img/upload/<?= $x['imgPrincipale']['img'] ?>" alt="Logement" class="img-responsive">
                         <div class="listing-info">
                             <h3><?= $x['idAnimal'] ?></h3>
-                            <p><?= $x['idEspece'] ?></p>
-                            <p class="price"><?= $x['loyer'] ?>$ par nuit</p>
+                            <p><?= $x['nom'] ?></p>
+                            <!-- <p class="price"><?= $x['loyer'] ?>$ par nuit</p> -->
                         </div>
                     </div>
                 </div>

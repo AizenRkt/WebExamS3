@@ -59,17 +59,7 @@ CREATE TABLE ImageAnimal (
     idImage INT PRIMARY KEY AUTO_INCREMENT,
     idAnimal INT NOT NULL,
     titre VARCHAR(255) NOT NULL,
-    FOREIGN KEY (idAnimal) REFERENCES Animal(idAnimal) ON DELETE CASCADE
-);
-
-CREATE TABLE Alimentation (
-    idAlimentation INT PRIMARY KEY AUTO_INCREMENT,
-    idAnimal INT NOT NULL,
-    idAliment INT NOT NULL,
-    quantite DECIMAL(10,2) NOT NULL, -- Quantité de l’aliment donné
-    date DATE NOT NULL DEFAULT CURRENT_DATE, -- Ajout de la date par défaut
-    FOREIGN KEY (idAnimal) REFERENCES Animal(idAnimal) ON DELETE CASCADE,
-    FOREIGN KEY (idAliment) REFERENCES Aliment(idAliment) ON DELETE CASCADE
+    FOREIGN KEY (idAnimal) REFERENCES animal(idAnimal) ON DELETE CASCADE
 );
 
 INSERT INTO typeAnimal (espece, poids_min_vente, prix_vente_kg, poids_max, nb_jour_sans_manger, perte_poids_jour) VALUES
