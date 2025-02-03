@@ -13,7 +13,7 @@ class Controller {
     }
 
     public function acceuil() {
-        $types = TypeAnimal::getAllTypeAnimal();    
+        $types = TypeAnimal::getAll();    
         $animals = Animal::getAll();    
     
         if (isset($_GET['idType'])) {
