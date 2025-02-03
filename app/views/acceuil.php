@@ -19,7 +19,7 @@
             <div class="scroll-container">
                 <a href="<?= Flight::base() ?>/acceuil"><button class="filter-btn">all</button></a>
                 <?php foreach ($types as $x) { ?>
-                    <a href="<?= Flight::base() ?>/acceuil?idType=<?= $x['idType'] ?>"><button class="filter-btn"><?= $x['nom'] ?></button></a>
+                    <a href="<?= Flight::base() ?>/acceuil?idType=<?= $x['idEspece'] ?>"><button class="filter-btn"><?= $x['nomEspece'] ?></button></a>
                 <?php } ?>
             </div>
         </div>
@@ -27,13 +27,13 @@
         <!-- Grille de logements -->
         <div class="row listings-grid">
             <?php foreach ($animals as $x) { ?>
-            <a href="<?= Flight::base() ?>/habitationDetail?id=<?= $x['idHabitation'] ?>">
+            <a href="<?= Flight::base() ?>/habitationDetail?id=<?= $x['idAnimal'] ?>">
                 <div class="col-md-2 col-sm-4">
                     <div class="listing-card">
                         <img src="<?= Flight::base() ?>/public/assets/img/upload/<?= $x['imgPrincipale']['img'] ?>" alt="Logement" class="img-responsive">
                         <div class="listing-info">
-                            <h3><?= $x['nom'] ?></h3>
-                            <p><?= $x['quartier'] ?></p>
+                            <h3><?= $x['idAnimal'] ?></h3>
+                            <p><?= $x['idEspece'] ?></p>
                             <p class="price"><?= $x['loyer'] ?>$ par nuit</p>
                         </div>
                     </div>

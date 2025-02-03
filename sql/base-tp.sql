@@ -44,12 +44,13 @@ CREATE TABLE Alimentation (
     FOREIGN KEY (idAliment) REFERENCES Aliment(idAliment) ON DELETE CASCADE
 );
 
-INSERT INTO Espece (nomEspece) VALUES 
-('Bœuf'),
-('Chèvre'),
-('Mouton'),
-('Cochon'),
-('Cheval');
+INSERT INTO Espece (nomEspece, poids_min_vente, prix_vente_kg, poids_max, nb_jour_sans_manger, perte_poids_jour) VALUES
+('Vache', 150.00, 2.50, 1000.00, 10, 2.00),
+('Mouton', 45.00, 3.00, 150.00, 8, 1.50),
+('Poulet', 2.00, 5.00, 7.00, 5, 3.00),
+('Cheval', 200.00, 4.00, 500.00, 12, 1.00),
+('Chèvre', 35.00, 3.50, 120.00, 7, 1.80);
+
 INSERT INTO Animal (idEspece, poids_min, poids_max, poids_actuel, prix_vente, jours_sans_manger, perte_poids_jour) VALUES 
 -- Bœuf
 (1, 400.00, 900.00, 600.00, 5.00, 7, 1.50),  
