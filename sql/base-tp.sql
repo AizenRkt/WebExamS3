@@ -86,3 +86,11 @@ INSERT INTO ImageAnimal (idAnimal, titre) VALUES
 (3, 'mouton.jpg'),
 (4, 'cochon.jpg'),
 (5, 'cheval.jpg');
+
+
+INSERT INTO typeTransaction (titre) VALUES
+('Achat'),
+('Vente');
+
+INSERT INTO capital (montant) VALUES
+(30000);

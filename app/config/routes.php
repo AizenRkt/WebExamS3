@@ -44,6 +44,8 @@ $router->post('/typeAnimalUpdate', [ $typeAnimalController, 'typeAnimalUpdate' ]
 $AnimalController = new AnimalController();
 $router->get('/animalAchat', [ $AnimalController, 'AnimalAchat' ]);
 $router->get('/animalVente', [ $AnimalController, 'AnimalVente' ]);
+$router->post('/t-AnimalAchat', [ $AnimalController, 'AddAnimal' ]);
+$router->get('/t-AnimalVente', [ $AnimalController, 'VendreAnimal' ]);
 
 // $router->get('/', \app\controllers\WelcomeController::class.'->home'); 
 

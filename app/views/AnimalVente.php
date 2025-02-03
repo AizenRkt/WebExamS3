@@ -53,7 +53,7 @@
                                                         <td><?= $x['idTypeAnimal'] ?></td>
                                                         <td><?= $x['poids'] ?></td>
                                                         <td class="button">
-                                                            <a href="<?= Flight::base() ?>/t-animalVente" class="btn btn-primary rounded-pill">vendre</a>
+                                                            <a href="<?= Flight::base() ?>/t-animalVente?idAnimal=<?= $x['idAnimal'] ?>" class="btn btn-primary rounded-pill">vendre</a>
                                                         </td>
                                                     </tr>
                                                     <?php } ?>

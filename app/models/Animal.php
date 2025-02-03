@@ -13,7 +13,7 @@ class Animal {
     // Insérer un nouvel animal
     public static function insert($idTypeAnimal, $nom, $poids) {
         $db = Flight::db();
-        $sql = "INSERT INTO animal (idEspece, poids_actuel) VALUES (:idEspece, :poids_actuel)";
+        $sql = "INSERT INTO animal (idTypeAnimal, nom, poids) VALUES (:idTypeAnimal, :nom, :poids)";
         $stmt = $db->prepare($sql);
         $stmt->execute([
             ':idTypeAnimal' => $idTypeAnimal,
@@ -21,7 +21,7 @@ class Animal {
             ':poids' => $poids,
         ]);
         return $db->lastInsertId();
-    }
+    }    
 
     // Récupérer tous les animaux
     public static function getAll() {
@@ -81,4 +81,33 @@ class Animal {
         $stmt->execute([':idEspece' => $idEspece]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function getPrixActuelAnimal($idAnimal) {
+        $db = Flight::db();
+        $sql = "SELECT a.poids, t.prix_vente_kg 
+                FROM animal a 
+                JOIN typeAnimal t ON a.idTypeAnimal = t.idTypeAnimal
+                WHERE a.idAnimal = :idAnimal";
+        
+        $stmt = $db->prepare($sql);
+        $stmt->execute([':idAnimal' => $idAnimal]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        if ($result) {
+            return $result['poids'] * $result['prix_vente_kg'];
+        }
+        return 0; // Retourne 0 si l'animal n'existe pas
+    }
+    
+    public static function getAnimalsNonVendu() {
+        $db = Flight::db();
+        $sql = "SELECT a.*
+                FROM animal a
+                LEFT JOIN transactions t ON a.idAnimal = t.idAnimal AND t.idTypeTransaction = 2
+                WHERE t.idAnimal IS NULL";
+        
+        return $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    
 }

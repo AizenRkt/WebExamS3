@@ -5,76 +5,50 @@ namespace app\models;
 use Flight;
 use PDO;
 
-class Reservation {
+class Transaction {
 
     public function __construct() {
     }
 
-    public static function insert($idUser, $idHabitation, $dateDebut, $dateFin) {
+    // 🔹 Insérer une nouvelle transaction (achat ou vente)
+    public static function insert($idTypeTransaction, $idAnimal, $montant) {
         $db = Flight::db();
-        $sql = "INSERT INTO reservationAirbnb (idClient, idHabitation, dateDebut, dateFin) 
-                VALUES (:idUser, :idHabitation, :dateDebut, :dateFin)";
+        $sql = "INSERT INTO transactions (idTypeTransaction, idAnimal, montant, date_transaction) 
+                VALUES (:idTypeTransaction, :idAnimal, :montant, CURDATE())";
         $stmt = $db->prepare($sql);
         $stmt->execute([
-            ':idUser' => $idUser,
-            ':idHabitation' => $idHabitation,
-            ':dateDebut' => $dateDebut,
-            ':dateFin' => $dateFin,
+            ':idTypeTransaction' => $idTypeTransaction,
+            ':idAnimal' => $idAnimal,
+            ':montant' => $montant
         ]);
-        return $db->lastInsertId();
+        return $db->lastInsertId(); // Retourne l'ID de la transaction insérée
     }
 
+    // 🔹 Récupérer toutes les transactions
     public static function getAll() {
         $db = Flight::db();
-        $sql = "SELECT * FROM reservationAirbnb";
+        $sql = "SELECT t.*, tt.titre, a.nom AS animal_nom 
+                FROM transactions t
+                JOIN typeTransaction tt ON t.idTypeTransaction = tt.idTypeTransaction
+                JOIN animal a ON t.idAnimal = a.idAnimal
+                ORDER BY t.date_transaction DESC";
         return $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public static function getById($id) {
+    // 🔹 Récupérer une transaction par son ID
+    public static function getById($idTransaction) {
         $db = Flight::db();
-        $sql = "SELECT * FROM reservationAirbnb WHERE idReservation = :id";
+        $sql = "SELECT * FROM transactions WHERE idTransaction = :idTransaction";
         $stmt = $db->prepare($sql);
-        $stmt->execute([':id' => $id]);
+        $stmt->execute([':idTransaction' => $idTransaction]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public static function update($id, $dateDebut, $dateFin) {
+    // 🔹 Supprimer une transaction
+    public static function delete($idTransaction) {
         $db = Flight::db();
-        $sql = "UPDATE reservationAirbnb SET dateDebut = :dateDebut, dateFin = :dateFin WHERE idReservation = :id";
+        $sql = "DELETE FROM transactions WHERE idTransaction = :idTransaction";
         $stmt = $db->prepare($sql);
-        return $stmt->execute([
-            ':id' => $id,
-            ':dateDebut' => $dateDebut,
-            ':dateFin' => $dateFin,
-        ]);
+        return $stmt->execute([':idTransaction' => $idTransaction]);
     }
-
-    public static function delete($id) {
-        $db = Flight::db();
-        $sql = "DELETE FROM reservationAirbnb WHERE idReservation = :id";
-        $stmt = $db->prepare($sql);
-        return $stmt->execute([':id' => $id]);
-    }
-
-    public static function estLouer($idHabitation, $dateDebut, $dateFin) {
-        $db = Flight::db();
-        $sql = "SELECT COUNT(*) FROM reservationAirbnb 
-                WHERE idHabitation = :idHabitation 
-                AND ((dateDebut BETWEEN :dateDebut AND :dateFin) 
-                     OR (dateFin BETWEEN :dateDebut AND :dateFin) 
-                     OR (:dateDebut BETWEEN dateDebut AND dateFin) 
-                     OR (:dateFin BETWEEN dateDebut AND dateFin))";
-    
-        $stmt = $db->prepare($sql);
-        $stmt->execute([
-            ':idHabitation' => $idHabitation,
-            ':dateDebut' => $dateDebut,
-            ':dateFin' => $dateFin
-        ]);
-    
-        $count = $stmt->fetchColumn();
-    
-        return $count > 0;
-    }
-    
 }
