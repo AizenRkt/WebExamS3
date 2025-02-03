@@ -16,7 +16,6 @@ CREATE TABLE animal (
     idTypeAnimal INT NOT NULL,
     nom VARCHAR(255) NOT NULL,
     poids DECIMAL(10,2) NOT NULL,
-    date_achat DATE NOT NULL,
     FOREIGN KEY (idTypeAnimal) REFERENCES typeAnimal(idTypeAnimal) ON DELETE CASCADE
 );
 
