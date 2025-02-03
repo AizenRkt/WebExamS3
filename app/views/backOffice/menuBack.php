@@ -34,14 +34,14 @@
 
                 <li class="sidebar-title">Marketplace</li>
                 <li class="sidebar-item">
-                    <a href="index.html" class='sidebar-link'>
+                    <a href="<?= Flight::base() ?>/animalAchat" class='sidebar-link'>
                         <i class="bi bi-cart-plus"></i>
                         <span>Achat d'animaux</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="index.html" class='sidebar-link'>
+                    <a href="<?= Flight::base() ?>/animalVente" class='sidebar-link'>
                         <i class="bi bi-cash-coin"></i>
                         <span>Vente d'animaux</span>
                     </a>

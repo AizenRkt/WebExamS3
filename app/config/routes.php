@@ -4,6 +4,7 @@
 use app\controllers\AuthController;
 use app\controllers\Controller;
 use app\controllers\TypeAnimalController;
+use app\controllers\AnimalController;
 //importation de model
 
 //importation lié flight
@@ -39,6 +40,11 @@ $typeAnimalController = new TypeAnimalController();
 $router->get('/typeAnimalInsert', [ $typeAnimalController, 'typeAnimalInsert' ]);
 $router->get('/typeAnimalList', [ $typeAnimalController, 'typeAnimalList' ]);
 $router->post('/typeAnimalUpdate', [ $typeAnimalController, 'typeAnimalUpdate' ]);
+
+$AnimalController = new AnimalController();
+$router->get('/animalAchat', [ $AnimalController, 'AnimalAchat' ]);
+$router->get('/animalVente', [ $AnimalController, 'AnimalVente' ]);
+
 // $router->get('/', \app\controllers\WelcomeController::class.'->home'); 
 
 // $router->get('/hello-world/@name', function($name) {
