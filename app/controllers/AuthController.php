@@ -34,7 +34,7 @@ class AuthController {
         }
     
         if ($pwd == "admin") {
-            Flight::redirect('/habitationList');
+            Flight::redirect('/acceuil');
         } else {
             $mssg = "Nom d'utilisateur ou mot de passe incorrect.";
             Flight::redirect('adminLog/?mssg=' . urlencode($mssg));

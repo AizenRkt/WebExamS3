@@ -2,7 +2,8 @@
 
 namespace app\controllers;
 
-use app\models\Habitation;
+use app\models\Animal;
+use app\models\Espece;
 
 use Flight;
 
@@ -12,21 +13,21 @@ class Controller {
     }
 
     public function acceuil() {
-        $types = Habitation::getAllType();    
-        $habitations = Habitation::getAll();    
+        $types = Espece::getAllEspece();    
+        $animals = Animal::getAll();    
     
         if (isset($_GET['idType'])) {
             $idType = $_GET['idType'];
-            $habitations = Habitation::getAllByTypeId($idType);
+            $animals = Animal::getAllByEspeceId($idType);
         }
     
-        if (isset($_GET['descri'])) {
-            $descri = $_GET['descri'];
-            $habitations = Habitation::recherche(null, null, null, null, $descri);
-        }
+        // if (isset($_GET['descri'])) {
+        //     $descri = $_GET['descri'];
+        //     $animals = Animal::recherche(null, null, null, null, $descri);
+        // }
 
-        foreach ($habitations as &$hb) {
-            $photos = Habitation::getPhoto($hb['idHabitation']);            
+        foreach ($animals as &$hb) {
+            $photos = Animal::getPhoto($hb['idAnimal']);            
             if (!empty($photos)) {
                 $hb['imgPrincipale'] = $photos[0];
             } else {
@@ -34,7 +35,7 @@ class Controller {
             }
         }
         
-        Flight::render('acceuil', ['habitations' => $habitations, 'types' => $types]);
+        Flight::render('acceuil', ['animals' => $animals, 'types' => $types]);
     }
     
 

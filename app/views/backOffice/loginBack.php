@@ -25,7 +25,7 @@
             <h1 class="auth-title">Log in.</h1>
             <p class="auth-subtitle mb-5">vérifions votre identité</p>
 
-            <form action="" method="post">
+            <form action="<?= Flight::base() ?>/t-adminLog" method="post">
                 <div class="form-group position-relative has-icon-left mb-4">
                     <input type="text" name="user" class="form-control form-control-xl" placeholder="username">
                     <div class="form-control-icon">

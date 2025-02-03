@@ -26,7 +26,7 @@
 
         <!-- Grille de logements -->
         <div class="row listings-grid">
-            <?php foreach ($habitations as $x) { ?>
+            <?php foreach ($animals as $x) { ?>
             <a href="<?= Flight::base() ?>/habitationDetail?id=<?= $x['idHabitation'] ?>">
                 <div class="col-md-2 col-sm-4">
                     <div class="listing-card">
