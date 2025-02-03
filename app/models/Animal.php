@@ -13,8 +13,7 @@ class Animal {
     // Insérer un nouvel animal
     public static function insert($idTypeAnimal, $nom, $poids) {
         $db = Flight::db();
-        $sql = "INSERT INTO animal (idTypeAnimal, nom, poids) 
-                VALUES (:idTypeAnimal, :nom, :poids)";
+        $sql = "INSERT INTO animal (idEspece, poids_actuel) VALUES (:idEspece, :poids_actuel)";
         $stmt = $db->prepare($sql);
         $stmt->execute([
             ':idTypeAnimal' => $idTypeAnimal,

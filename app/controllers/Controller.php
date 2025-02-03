@@ -43,5 +43,8 @@ class Controller {
         session_destroy();
         Flight::redirect('/');
     }
-    
+
+    public function marketplace() {
+        Flight::render('marketplace');
+    }
 }

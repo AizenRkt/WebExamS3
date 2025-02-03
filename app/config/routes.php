@@ -3,6 +3,7 @@
 //importation de controller
 use app\controllers\AuthController;
 use app\controllers\Controller;
+use app\controllers\TypeAnimalController;
 //importation de model
 
 //importation lié flight
@@ -32,7 +33,12 @@ $router->post('/t-inscription', [ $Auth, 'authInscription' ]);
 $controller = new Controller();
 $router->get('/acceuil', [ $controller, 'acceuil' ]);
 $router->get('/logout', [ $controller, 'logout' ]);
+$router->get('/marketplace', [ $controller, 'marketplace' ]);
 
+$typeAnimalController = new TypeAnimalController();
+$router->get('/typeAnimalInsert', [ $typeAnimalController, 'typeAnimalInsert' ]);
+$router->get('/typeAnimalList', [ $typeAnimalController, 'typeAnimalList' ]);
+$router->post('/typeAnimalUpdate', [ $typeAnimalController, 'typeAnimalUpdate' ]);
 // $router->get('/', \app\controllers\WelcomeController::class.'->home'); 
 
 // $router->get('/hello-world/@name', function($name) {
