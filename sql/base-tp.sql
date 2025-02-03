@@ -1,7 +1,7 @@
 CREATE DATABASE AnimalConnect;
 use AnimalConnect;
 
-CREATE TABLE EspeceAnimal (
+CREATE TABLE Espece (
     idEspece INT PRIMARY KEY AUTO_INCREMENT,
     prix_vente DECIMAL(10,2) NOT NULL,
     nomEspece VARCHAR(100) NOT NULL
