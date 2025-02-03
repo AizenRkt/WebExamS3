@@ -1,0 +1,135 @@
+body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-image: url('../img/back.svg'); */
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#first {
+  width: 550px;
+  min-height: 300px;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  border-radius: 30px;
+  background-color: white;
+}
+
+#menu {
+  height: 80px;
+  background-color: #F8F8F8;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+#formulaire h4{
+  font-size: 18px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  margin-left: 35px;
+
+  position: relative;
+  top: 20px;
+}
+
+/*dropdown: menu déroulant*/
+#drop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#mssg {
+  display: flex;
+  align-items: center;
+}
+
+.titleIF {
+  padding-bottom : 10px; 
+}
+/*dropdown: menu déroulant*/
+
+/*code input*/
+body {
+box-sizing: border-box;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#formulaire .inputbox {
+position: relative;
+width: 300px;
+height: 50px;
+margin-bottom: 27px;
+}
+#formulaire .inputbox input {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 60px;
+border: 1px solid rgba(105, 105, 105, 0.397);
+outline: none;
+background: none;
+padding: 10px;
+border-radius: 10px;
+font-size: 1.2em;
+}
+
+#formulaire .inputbox:last-child {
+margin-bottom: 0;
+}
+
+#formulaire .inputbox span {
+position: absolute;
+top: 12px;
+left: 20px;
+font-size: 1.1em;
+font-weight: bold;
+transition: 0.6s;
+font-family: sans-serif;
+}
+
+#formulaire .inputbox input:focus ~ span, #formulaire .inputbox input:valid ~ span {
+transform: translateX(-13px) translateY(-35px);
+font-size: 1em;
+}
+
+#formulaire .inputbox [type="submit"] {
+width: 50%;
+height: 40px;
+background: #85B172;
+color: #fff;
+border: #fff;
+}
+
+#formulaire form {
+  margin-top: 55px;
+  margin-left: 35px;
+}
+
+.ensemble {
+display: flex;
+flex-direction: row;
+margin-top: 15px;
+margin-bottom: 35px;
+}
+
+.iconForm {
+width: 35px;
+height: 50px;
+font-size: 20px;
+padding-top: 15px;
+}
+
+#logSi {
+position: relative;
+top: 15px;
+}
+/*code input*/

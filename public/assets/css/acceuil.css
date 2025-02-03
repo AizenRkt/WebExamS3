@@ -1,0 +1,387 @@
+/* Variables CSS pour la cohérence */
+:root {
+    --primary-color: #85B172;
+    --text-dark: #222222;
+    --text-light: #717171;
+    --border-color: #DDDDDD;
+    --background-light: #F7F7F7;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --radius-small: 8px;
+    --radius-large: 12px;
+    --transition: all 0.2s ease-in-out;
+}
+
+/* Reset et styles de base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    padding-top: 80px;
+    font-family: 'Circular', -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    color: var(--text-dark);
+    line-height: 1.43;
+}
+
+/* Navbar améliorée */
+.navbar-default {
+    background-color: #fff;
+    border-bottom: 1px solid var(--border-color);
+    height: 80px;
+    padding: 0;
+    box-shadow: 0 1px 0 var(--shadow-color);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+}
+
+.navbar-brand {
+    color: var(--primary-color) !important;
+    font-weight: bold;
+    font-size: 24px;
+    padding: 15px 0;
+}
+
+.navbar-nav > li > a {
+    font-weight: 500;
+    color: var(--text-dark) !important;
+    padding: 30px 15px;
+    transition: var(--transition);
+}
+
+.navbar-nav > li > a:hover {
+    color: var(--primary-color) !important;
+    background-color: transparent !important;
+}
+
+/*search bar*/
+.search-bar {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 40px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    height: 48px;
+    margin: 10px 0;
+    width: 400px;
+}
+
+.search-item {
+    position: relative;
+    padding: 0 16px;
+    cursor: pointer;
+    flex: 1;
+}
+
+.search-item:not(:last-child) {
+    border-right: 1px solid #DDDDDD;
+}
+
+.search-item:hover {
+    background-color: #F7F7F7;
+    border-radius: 32px;
+}
+
+.search-input {
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    width: 100%;
+    outline: none;
+}
+
+.search-button {
+    background: #85B172;
+    padding: 8px;
+    border-radius: 70%;
+    border: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-left: 10px;
+}
+
+.search-button:hover {
+    background: #DE1162;
+}
+
+.search-icon {
+    width: 12px;
+    height: 12px;
+}
+
+/* Filtres améliorés */
+.filters-row {
+    position: sticky;
+    top: 80px;
+    background-color: #fff;
+    z-index: 100;
+    margin: 0 0 24px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.scroll-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 16px;
+    padding: 4px 0;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+.scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+.filter-btn {
+    white-space: nowrap;
+    padding: 12px 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+    background: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--text-dark);
+}
+
+.filter-btn:hover {
+    border-color: #FF5A5F;
+    transform: scale(1.02);
+}
+
+/* Grille de logements améliorée */
+.listings-grid {
+    margin: 0 -12px;
+    min-height: 700px;
+}
+
+.listings-grid [class*='col-'] {
+    padding: 0 12px;
+}
+
+.listing-card {
+    margin-bottom: 40px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.listing-card:hover {
+    transform: translateY(-2px);
+}
+
+.listing-card img {
+    border-radius: var(--radius-large);
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    margin-bottom: 12px;
+}
+
+.listing-info {
+    padding: 0;
+}
+
+.listing-info h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-dark);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.listing-info p {
+    margin: 0 0 4px;
+    font-size: 15px;
+    color: var(--text-light);
+}
+
+.price {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-top: 8px;
+    display: inline-block;
+}
+
+.rating {
+    float: right;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.rating::after {
+    content: "★";
+    color: var(--primary-color);
+    margin-left: 4px;
+}
+
+
+.logo img {
+    width: 350px;
+    height: auto; 
+    display: inline-block;
+    position: relative;
+    bottom: 27px;
+    object-fit: contain;
+}
+
+/* Footer amélioré */
+.footer {
+    background-color: var(--background-light);
+    padding: 48px 0;
+    margin-top: 48px;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer h4 {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    color: var(--text-dark);
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer ul li {
+    margin-bottom: 16px;
+}
+
+.footer ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.footer ul li a:hover {
+    color: var(--text-dark);
+    text-decoration: underline;
+}
+
+/* Media Queries pour la responsivité */
+@media (max-width: 768px) {
+    .navbar-default {
+        height: 60px;
+    }
+    
+    body {
+        padding-top: 60px;
+    }
+    
+    .filters-row {
+        top: 60px;
+        padding: 12px 0;
+    }
+    
+    .listing-card img {
+        height: 240px;
+    }
+    
+    .footer {
+        padding: 32px 0;
+    }
+    
+    .footer [class*='col-'] {
+        margin-bottom: 32px;
+    }
+}
+
+/* Styles pour le bouton profil */
+.profile-button {
+    border: 1px solid #DDDDDD;
+    border-radius: 21px;
+    background: white;
+    padding: 5px 5px 5px 12px;
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+}
+
+.profile-button:hover {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.18);
+}
+
+.profile-button .menu-icon {
+    width: 16px;
+    height: 16px;
+    fill: #717171;
+}
+
+.profile-button .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #717171;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar svg {
+    width: 18px;
+    height: 18px;
+    fill: white;
+}
+
+/* Styles pour le dropdown */
+.profile-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    min-width: 240px;
+    padding: 8px 0;
+    margin-top: 8px;
+    display: none;
+    z-index: 1000;
+}
+
+.profile-dropdown.show {
+    display: block;
+}
+
+.profile-dropdown-item {
+    padding: 12px 16px;
+    display: block;
+    color: #222;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.profile-dropdown-item:hover {
+    background-color: #F7F7F7;
+    text-decoration: none;
+}
+
+.profile-dropdown-divider {
+    height: 1px;
+    background: #DDDDDD;
+    margin: 8px 0;
+}
+
+/* Position relative pour le conteneur du dropdown */
+.profile-container {
+    position: relative;
+    width: 100px;
+}
