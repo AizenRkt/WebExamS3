@@ -11,19 +11,14 @@ class Animal {
     }
 
     // Insérer un nouvel animal
-    public static function insert($idEspece, $poids_min, $poids_max, $poids_actuel, $prix_vente, $jours_sans_manger, $perte_poids_jour) {
+    public static function insert($idEspece, $poids_actuel) {
         $db = Flight::db();
-        $sql = "INSERT INTO Animal (idEspece, poids_min, poids_max, poids_actuel, prix_vente, jours_sans_manger, perte_poids_jour) 
-                VALUES (:idEspece, :poids_min, :poids_max, :poids_actuel, :prix_vente, :jours_sans_manger, :perte_poids_jour)";
+        $sql = "INSERT INTO Animal (idEspece, poids_actuel) 
+                VALUES (:idEspece, :poids_actuel)";
         $stmt = $db->prepare($sql);
         $stmt->execute([
             ':idEspece' => $idEspece,
-            ':poids_min' => $poids_min,
-            ':poids_max' => $poids_max,
             ':poids_actuel' => $poids_actuel,
-            ':prix_vente' => $prix_vente,
-            ':jours_sans_manger' => $jours_sans_manger,
-            ':perte_poids_jour' => $perte_poids_jour,
         ]);
         return $db->lastInsertId();
     }    
@@ -45,22 +40,15 @@ class Animal {
     }
 
     // Mettre à jour un animal
-    public static function update($idAnimal, $idEspece, $poids_min, $poids_max, $poids_actuel, $prix_vente, $jours_sans_manger, $perte_poids_jour) {
+    public static function update($idAnimal, $idEspece, $poids_actuel) {
         $db = Flight::db();
         $sql = "UPDATE Animal 
-                SET idEspece = :idEspece, poids_min = :poids_min, poids_max = :poids_max, 
-                    poids_actuel = :poids_actuel, prix_vente = :prix_vente, 
-                    jours_sans_manger = :jours_sans_manger, perte_poids_jour = :perte_poids_jour 
+                SET idEspece = :idEspece, poids_actuel = :poids_actuel
                 WHERE idAnimal = :idAnimal";
         $stmt = $db->prepare($sql);
         return $stmt->execute([
             ':idEspece' => $idEspece,
-            ':poids_min' => $poids_min,
-            ':poids_max' => $poids_max,
             ':poids_actuel' => $poids_actuel,
-            ':prix_vente' => $prix_vente,
-            ':jours_sans_manger' => $jours_sans_manger,
-            ':perte_poids_jour' => $perte_poids_jour,
             ':idAnimal' => $idAnimal,
         ]);
     }    

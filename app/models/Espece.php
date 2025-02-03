@@ -10,13 +10,18 @@ class Espece {
     public function __construct() {
     }
 
-    public static function insert($nomEspece, $prix_vente) {
+    public static function insert($nomEspece, $poids_min_vente, $prix_vente_kg, $poids_max, $nb_jour_sans_manger, $perte_poids_jour) {
         $db = Flight::db();
-        $sql = "INSERT INTO Espece (nomEspece, prix_vente) VALUES (:nomEspece, :prix_vente)";
+        $sql = "INSERT INTO Espece (nomEspece, poids_min_vente, prix_vente_kg, poids_max, nb_jour_sans_manger, perte_poids_jour) 
+                VALUES (:nomEspece, :poids_min_vente, :prix_vente_kg, :poids_max, :nb_jour_sans_manger, :perte_poids_jour)";
         $stmt = $db->prepare($sql);
         $stmt->execute([
             ':nomEspece' => $nomEspece,
-            ':prix_vente' => $prix_vente,
+            ':poids_min_vente' => $poids_min_vente,
+            ':prix_vente_kg' => $prix_vente_kg,
+            ':poids_max' => $poids_max,
+            ':nb_jour_sans_manger' => $nb_jour_sans_manger,
+            ':perte_poids_jour' => $perte_poids_jour
         ]);
         return $db->lastInsertId();
     }    
@@ -35,18 +40,23 @@ class Espece {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public static function update($idEspece, $nomEspece, $prix_vente) {
+    public static function update($idEspece, $nomEspece, $poids_min_vente, $prix_vente_kg, $poids_max, $nb_jour_sans_manger, $perte_poids_jour) {
         $db = Flight::db();
-        $sql = "UPDATE Espece SET nomEspece = :nomEspece, prix_vente = :prix_vente WHERE idEspece = :idEspece";
+        $sql = "UPDATE Espece SET nomEspece = :nomEspece, poids_min_vente = :poids_min_vente, prix_vente_kg = :prix_vente_kg, 
+                poids_max = :poids_max, nb_jour_sans_manger = :nb_jour_sans_manger, perte_poids_jour = :perte_poids_jour 
+                WHERE idEspece = :idEspece";
         $stmt = $db->prepare($sql);
         return $stmt->execute([
             ':nomEspece' => $nomEspece,
-            ':prix_vente' => $prix_vente,
-            ':idEspece' => $idEspece,
+            ':poids_min_vente' => $poids_min_vente,
+            ':prix_vente_kg' => $prix_vente_kg,
+            ':poids_max' => $poids_max,
+            ':nb_jour_sans_manger' => $nb_jour_sans_manger,
+            ':perte_poids_jour' => $perte_poids_jour,
+            ':idEspece' => $idEspece
         ]);
     }    
 
-    // Delete a client
     public static function delete($id) {
         $db = Flight::db();
         $sql = "DELETE FROM Espece WHERE idEspece = :id";
