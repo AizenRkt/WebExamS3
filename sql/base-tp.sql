@@ -3,9 +3,14 @@ use AnimalConnect;
 
 CREATE TABLE Espece (
     idEspece INT PRIMARY KEY AUTO_INCREMENT,
-    prix_vente DECIMAL(10,2) NOT NULL,
-    nomEspece VARCHAR(100) NOT NULL
+    nomEspece VARCHAR(100) NOT NULL,
+    poids_min_vente DECIMAL(6,2) NOT NULL, -- Poids minimal pour la vente
+    prix_vente_kg DECIMAL(10,2) NOT NULL, -- Prix de vente au kg
+    poids_max DECIMAL(6,2) NOT NULL, -- Poids maximal de l'animal
+    nb_jour_sans_manger INT NOT NULL, -- Nombre de jours sans manger avant de mourir
+    perte_poids_jour DECIMAL(5,2) NOT NULL -- % perte de poids par jour sans manger
 );
+
 
 CREATE TABLE Aliment (
     idAliment INT PRIMARY KEY AUTO_INCREMENT,
@@ -18,12 +23,8 @@ CREATE TABLE Aliment (
 CREATE TABLE Animal (
     idAnimal INT PRIMARY KEY AUTO_INCREMENT,
     idEspece INT NOT NULL,
-    poids_min DECIMAL(6,2) NOT NULL,
-    poids_max DECIMAL(6,2) NOT NULL,
-    poids_actuel DECIMAL(6,2) NOT NULL,
-    jours_sans_manger INT NOT NULL,
-    perte_poids_jour DECIMAL(5,2) NOT NULL, -- % de perte de poids par jour sans manger
-    FOREIGN KEY (idEspece) REFERENCES Espece(idEspece) ON DELETE CASCADE
+    poids_actuel DECIMAL(6,2) NOT NULL, -- Poids actuel de l'animal
+    FOREIGN KEY (idEspece) REFERENCES Espece(idEspece)
 );
 
 CREATE TABLE ImageAnimal (
