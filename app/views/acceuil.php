@@ -21,7 +21,6 @@
                 <?php foreach ($types as $x) { ?>
                     <a href="<?= Flight::base() ?>/acceuil?idType=<?= $x['idType'] ?>"><button class="filter-btn"><?= $x['nom'] ?></button></a>
                 <?php } ?>
-                <button class="filter-btn">Nouveautés</button>
             </div>
         </div>
 
