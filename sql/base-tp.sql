@@ -1,30 +1,58 @@
 CREATE DATABASE AnimalConnect;
 use AnimalConnect;
 
-CREATE TABLE Espece (
-    idEspece INT PRIMARY KEY AUTO_INCREMENT,
-    nomEspece VARCHAR(100) NOT NULL,
-    poids_min_vente DECIMAL(6,2) NOT NULL, -- Poids minimal pour la vente
-    prix_vente_kg DECIMAL(10,2) NOT NULL, -- Prix de vente au kg
-    poids_max DECIMAL(6,2) NOT NULL, -- Poids maximal de l'animal
-    nb_jour_sans_manger INT NOT NULL, -- Nombre de jours sans manger avant de mourir
-    perte_poids_jour DECIMAL(5,2) NOT NULL -- % perte de poids par jour sans manger
+CREATE TABLE typeAnimal (
+    idTypeAnimal INT AUTO_INCREMENT PRIMARY KEY,
+    espece VARCHAR(50) NOT NULL UNIQUE,
+    poids_minimal_vente DECIMAL(10,2) NOT NULL,
+    prix_vente_kg DECIMAL(10,2) NOT NULL,
+    poids_max DECIMAL(10,2) NOT NULL,
+    jours_sans_manger INT NOT NULL,
+    perte_poids_jour DECIMAL(5,2) NOT NULL
 );
 
-
-CREATE TABLE Aliment (
-    idAliment INT PRIMARY KEY AUTO_INCREMENT,
-    nomAliment VARCHAR(100) NOT NULL,
-    gain_poids DECIMAL(5,2) NOT NULL, -- % de gain de poids par consommation
-    prix DECIMAL(10,2) NOT NULL,
-    imageAliment VARCHAR(255) NOT NULL
+CREATE TABLE animal (
+    idAnimal INT AUTO_INCREMENT PRIMARY KEY,
+    idTypeAnimal INT NOT NULL,
+    nom VARCHAR(255) NOT NULL,
+    poids DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (idTypeAnimal) REFERENCES typeAnimal(idTypeAnimal) ON DELETE CASCADE
 );
 
-CREATE TABLE Animal (
-    idAnimal INT PRIMARY KEY AUTO_INCREMENT,
-    idEspece INT NOT NULL,
-    poids_actuel DECIMAL(6,2) NOT NULL, -- Poids actuel de l'animal
-    FOREIGN KEY (idEspece) REFERENCES Espece(idEspece)
+CREATE TABLE aliment (
+    idAliment INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(255) NOT NULL,
+    gain_poids DECIMAL(5,2) NOT NULL,
+    img VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE alimentation (
+    idAlimentation INT AUTO_INCREMENT PRIMARY KEY,
+    idAnimal INT NOT NULL,
+    idAliment INT NOT NULL,
+    date_nourrissage DATE NOT NULL,
+    FOREIGN KEY (idAnimal) REFERENCES animal(idAnimal) ON DELETE CASCADE,
+    FOREIGN KEY (idAliment) REFERENCES aliment(idAliment) ON DELETE CASCADE
+);
+
+CREATE TABLE typeTransaction (
+    idTypeTransaction INT AUTO_INCREMENT PRIMARY KEY,
+    titre VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE transactions (
+    idTransaction INT AUTO_INCREMENT PRIMARY KEY,
+    idTypeTransaction INT NOT NULL,
+    idAnimal INT NOT NULL,
+    montant DECIMAL(10,2) NOT NULL,
+    date_transaction DATE NOT NULL,
+    FOREIGN KEY (idTypeTransaction) REFERENCES typeTransaction(idTypeTransaction) ON DELETE CASCADE,
+    FOREIGN KEY (idAnimal) REFERENCES animal(idAnimal) ON DELETE CASCADE
+);
+
+CREATE TABLE capital (
+    idCapital INT AUTO_INCREMENT PRIMARY KEY,
+    montant DECIMAL(15,2) NOT NULL
 );
 
 CREATE TABLE ImageAnimal (
@@ -44,13 +72,12 @@ CREATE TABLE Alimentation (
     FOREIGN KEY (idAliment) REFERENCES Aliment(idAliment) ON DELETE CASCADE
 );
 
-INSERT INTO Espece (nomEspece, poids_min_vente, prix_vente_kg, poids_max, nb_jour_sans_manger, perte_poids_jour) VALUES
-('Vache', 150.00, 2.50, 1000.00, 10, 2.00),
-('Mouton', 45.00, 3.00, 150.00, 8, 1.50),
-('Poulet', 2.00, 5.00, 7.00, 5, 3.00),
-('Cheval', 200.00, 4.00, 500.00, 12, 1.00),
-('Chèvre', 35.00, 3.50, 120.00, 7, 1.80);
-
+INSERT INTO Espece (nomEspece) VALUES 
+('Bœuf'),
+('Chèvre'),
+('Mouton'),
+('Cochon'),
+('Cheval');
 INSERT INTO Animal (idEspece, poids_min, poids_max, poids_actuel, prix_vente, jours_sans_manger, perte_poids_jour) VALUES 
 -- Bœuf
 (1, 400.00, 900.00, 600.00, 5.00, 7, 1.50),  
