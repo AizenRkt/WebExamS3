@@ -44,6 +44,7 @@
                                                         <th>Poids maximal</th>
                                                         <th>nb jour sans manger</th>
                                                         <th>% perte de poids</th>
+                                                        <th>Quota journaalier</th>
                                                     </tr>
                                                 </thead>
 
@@ -57,6 +58,7 @@
                                                             <td><input class="form-control" type="number" step="0.01" name="data[<?= $animal['idTypeAnimal'] ?>][poids_max]" value="<?= $animal['poids_max'] ?>"></td>
                                                             <td><input class="form-control" type="number" name="data[<?= $animal['idTypeAnimal'] ?>][jours_sans_manger]" value="<?= $animal['jours_sans_manger'] ?>"></td>
                                                             <td><input class="form-control" type="text" name="data[<?= $animal['idTypeAnimal'] ?>][perte_poids_jour]" value="<?= $animal['perte_poids_jour'] ?>"></td>
+                                                            <td><input class="form-control"type="text" name="data[<?= $animal['idTypeAnimal'] ?>][quota_journalier]" value="<?= $animal['quota_journalier'] ?>"></td>
                                                         </tr>
                                                         <?php } ?>
                                                         <tr>
@@ -110,6 +112,7 @@
                 <td><input type="number" name="data[${tempId}][poids_max]" value="0"></td>
                 <td><input type="number" name="data[${tempId}][jours_sans_manger]" value="0"></td>
                 <td><input type="number" name="data[${tempId}][perte_poids_jour]" value="0"></td>
+                <td><input type="text" name="data[${tempId}][quota_journalier]" value="0"></td>
                 <td><button type="button" class="btn btn-danger btn-sm" onclick="removeRow(this)">X</button></td>
             `;
         }

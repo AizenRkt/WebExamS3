@@ -6,6 +6,7 @@ use app\controllers\Controller;
 use app\controllers\TypeAnimalController;
 use app\controllers\AnimalController;
 use app\controllers\TableauDeBordController;
+use app\controllers\StockController;
 //importation de model
 
 //importation lié flight
@@ -53,6 +54,10 @@ $router->post('/t-AnimalNourrissage', [ $AnimalController, 'tAnimalNourrissage' 
 
 $tableauController = new TableauDeBordController();
 $router->get('/tableauDeBord', [ $tableauController, 'tableauBord' ]);
+
+$StockController = new StockController();
+$router->get('/achatAliment', [ $StockController, 'insertStock' ]);
+$router->post('/stock-aliment', [ $StockController, 'stockerAliments' ]);
 
 
 // $router->get('/', \app\controllers\WelcomeController::class.'->home'); 

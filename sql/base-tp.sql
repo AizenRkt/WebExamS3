@@ -24,7 +24,7 @@ CREATE TABLE aliment (
     idAliment INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(255) NOT NULL,
     gain_poids DECIMAL(5,2) NOT NULL,
-    img VARCHAR(255) NOT NULL
+    prix DECIMAL(5,2) NOT NULL
 );
 
 CREATE TABLE alimentation (
@@ -66,6 +66,14 @@ CREATE TABLE ImageAnimal (
 CREATE TABLE simulationDate (
     idSimulation INT PRIMARY KEY AUTO_INCREMENT,
     date_simulee DATE NOT NULL
+);
+
+CREATE TABLE stock (
+    idStock INT AUTO_INCREMENT PRIMARY KEY,
+    idAliment INT NOT NULL,
+    quantite_stock DECIMAL(10,2) NOT NULL, 
+    date_ajout DATE NOT NULL,               
+    FOREIGN KEY (idAliment) REFERENCES aliment(idAliment)
 );
 
 

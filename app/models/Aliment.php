@@ -10,14 +10,14 @@ class Aliment {
     public function __construct() {}
 
     // Insérer un nouvel aliment
-    public static function insert($nom, $gain_poids, $img) {
+    public static function insert($nom, $gain_poids, $prix) {
         $db = Flight::db();
-        $sql = "INSERT INTO aliment (nom, gain_poids, img) VALUES (:nom, :gain_poids, :img)";
+        $sql = "INSERT INTO aliment (nom, gain_poids, prix) VALUES (:nom, :gain_poids, :prix)";
         $stmt = $db->prepare($sql);
         $stmt->execute([
             ':nom' => $nom,
             ':gain_poids' => $gain_poids,
-            ':img' => $img
+            ':prix' => $prix
         ]);
         return $db->lastInsertId();
     }
@@ -39,14 +39,14 @@ class Aliment {
     }
 
     // Mettre à jour un aliment
-    public static function update($id, $nom, $gain_poids, $img) {
+    public static function update($id, $nom, $gain_poids, $prix) {
         $db = Flight::db();
-        $sql = "UPDATE aliment SET nom = :nom, gain_poids = :gain_poids, img = :img WHERE idAliment = :id";
+        $sql = "UPDATE aliment SET nom = :nom, gain_poids = :gain_poids, prix = :prix WHERE idAliment = :id";
         $stmt = $db->prepare($sql);
         return $stmt->execute([
             ':nom' => $nom,
             ':gain_poids' => $gain_poids,
-            ':img' => $img,
+            ':prix' => $prix,
             ':id' => $id
         ]);
     }
