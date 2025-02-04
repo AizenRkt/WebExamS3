@@ -64,6 +64,15 @@
                                             </div>
 
                                             <div class="col-md-4">
+                                                <label>autovente</label>
+                                            </div>
+                                            <div class="col-md-8 form-group">
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
                                                 <label for="formFileMultiple">photos de l'animal</label>
                                             </div>
                                             <div class="col-md-8 form-group">

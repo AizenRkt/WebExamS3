@@ -17,10 +17,14 @@ class TableauDeBordController {
     public function tableauBord() {
         $capital = Capital::getTotalCapital();
         $dateSimule = Simulation::getDateSimulee();
-        $animals = Animal::getAll();
-        $nbAnimal = count($animals);
+        $animals = Animal::getAnimalsNonVendu();
+        foreach ($animals as &$x) {
+            $x['espece'] = Animal::getAnimalType($x['idAnimal'])['espece'];
+            $x['photoProfil'] = Animal::getPhotos($x['idAnimal'])[0]['img'];
+        }
 
-        Flight::render('TableauDeBord',['dateNow' => $dateSimule,'capital' => $capital,'nb_animals' => $nbAnimal]);
+        $nbAnimal = count($animals);
+        Flight::render('TableauDeBord',['dateNow' => $dateSimule,'capital' => $capital,'nb_animals' => $nbAnimal, 'animaux' => $animals]);
     }
 
 }

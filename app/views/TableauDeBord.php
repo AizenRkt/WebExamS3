@@ -9,24 +9,9 @@
     <link rel="stylesheet" href="<?= Flight::base() ?>/public/assets/assets/compiled/css/app-dark.css">
     <link rel="stylesheet" href="<?= Flight::base() ?>/public/assets/assets/compiled/css/custom-patrick.css">
     <style>
-        .dashboard-box {
-            width: 30%;
-            height: 200px;
-            display: inline-block;
-            margin: 10px;
-            background-color: #f4f4f4;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            text-align: center;
-            vertical-align: top;
-            padding: 20px;
-        }
-        .dashboard-box h4 {
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-        .date-filter-form {
-            margin-top: 20px;
+        #animalPhoto {
+            width: 100px;
+            height: auto;
         }
     </style>
 </head>
@@ -36,54 +21,150 @@
         <?= Flight::menuAdmin() ?>
 
         <div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
-            
-            <div class="d-flex justify-content-between align-items-center p-3">
-                <h1>Tableau de Bord</h1>
-            </div>
-
-            <!-- <div class="d-flex justify-content-between align-items-center p-3" style="float:right;">
-                <form action="<?= Flight::base() ?>/avancer-jour" method="get">
-                    <button type="submit" class="btn btn-warning">Avancer d’un jour</button>
-                </form>
-            </div> -->
-
-            <!-- Tableau de bord avec trois div -->
-            <div class="d-flex justify-content-between">
-                <div class="dashboard-box" id="capitalBox">
-                    <h4>Capital</h4>
-                    <p id="capital"><?= $capital ?></p>
-                </div>
-                <div class="dashboard-box" id="animalCountBox">
-                    <h4>Nombre d'animaux</h4>
-                    <p id="animalCount"><?= $nb_animals ?></p>
-                </div>
-                <div class="dashboard-box" id="otherInfoBox">
-                    <h4>Current date</h4>
-                    <p id="otherInfo"><?= $dateNow ?></p>
-                </div>
-            </div>
-
-            <!-- Formulaire de filtrage par date -->
-            <div class="date-filter-form">
-                <form id="dateFilterForm" action="#" method="GET">
-                    <input type="date" id="dateInput" name="date" value="<?= date('Y-m-d') ?>" />
-                    <button type="submit" class="btn btn-primary">Filtrer</button>
-                </form>
+            <div class="page-heading">
+                <h3>tableau de bord</h3>
+            </div> 
+            <div class="page-content"> 
+                <section class="row">
+                    <div class="col-12 col-lg-9">
+                        <div class="row">
+                            <div class="col-6 col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-4 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                                <div class="stats-icon purple mb-2">
+                                                    <i class="iconly-boldShow"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                                <h6 class="text-muted font-semibold">date de début</h6>
+                                                <h6 class="font-extrabold mb-0"><?= $dateNow ?></h6>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3 col-md-6">
+                                <div class="card"> 
+                                    <div class="card-body px-4 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                                <div class="stats-icon blue mb-2">
+                                                    <i class="iconly-boldProfile"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                                <h6 class="text-muted font-semibold">animaux</h6>
+                                                <h6 class="font-extrabold mb-0"><?= $nb_animals ?></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-4 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                                <div class="stats-icon green mb-2">
+                                                    <i class="iconly-boldAdd-User"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                                <h6 class="text-muted font-semibold">un truc</h6>
+                                                <h6 class="font-extrabold mb-0">80.000</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-4 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                                <div class="stats-icon red mb-2">
+                                                    <i class="iconly-boldBookmark"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                                <h6 class="text-muted font-semibold">capital</h6>
+                                                <h6 class="font-extrabold mb-0"><?= $capital ?> ar</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>vos animaux</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>photo</th>  
+                                                        <th>Id de l'animal</th>
+                                                        <th>nom</th>
+                                                        <th>type de l'animal</th>
+                                                        <th>poids</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php foreach ($animaux as $x) { ?>
+                                                    <tr>
+                                                        <td><img id="animalPhoto" src="<?= Flight::base() ?>/public/img/upload/<?= $x['photoProfil'] ?>" alt="un animal"></td>
+                                                        <td><?= $x['idAnimal'] ?></td>
+                                                        <td><?= $x['nom'] ?></td>
+                                                        <td><?= $x['espece'] ?></td>
+                                                        <td><?= $x['poids'] ?></td>
+                                                    </tr>
+                                                    <?php } ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <div class="card">
+                            <div class="card-body py-4 px-4">
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar avatar-xl">
+                                        <img src="<?= Flight::base() ?>/public/assets/assets/compiled/jpg/1.jpg" alt="Face 1">
+                                    </div>
+                                    <div class="ms-3 name">
+                                        <h5 class="font-bold">Sedera</h5>
+                                        <h6 class="text-muted mb-0">@SederaLeFermier</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>situation de la ferme</h4>
+                            </div>
+                            <div class="card-content pb-4">
+                                <div class="px-4">
+                                <form id="dateFilterForm" action="#" method="GET">
+                                    <input type="date" id="dateInput" name="date" value="<?= date('Y-m-d') ?>" />
+                                    <button class='btn btn-block btn-xl btn-outline-primary font-bold mt-3'>filtrer par date</button>
+                                </form>                            
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </section>
             </div>
         </div>
     </div>
-
-    <!-- Script AJAX pour mettre à jour le tableau de bord sans recharger la page -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        
-    </script>
-
 </body>
 <script src="<?= Flight::base() ?>/public/assets/assets/static/js/components/dark.js"></script>
 <script src="<?= Flight::base() ?>/public/assets/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
