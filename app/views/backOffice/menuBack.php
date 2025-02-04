@@ -90,6 +90,23 @@
                     </ul>
                 </li>
 
+                <li class="sidebar-title">Utilitaires</li>
+
+                <li class="sidebar-item">
+                    <a href="<?= Flight::base() ?>/resetData" class='sidebar-link'>
+                        <i class="bi bi-arrow-counterclockwise"></i>
+                        <span>Réinitialiser les données de l'application</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="<?= Flight::base() ?>/logout" class='sidebar-link'>
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+
+
             </ul>
         </div>
     </div>
