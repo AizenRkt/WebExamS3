@@ -30,10 +30,7 @@ class TableauDeBordController {
 
     public function prevision() {
         $dateCible = $_GET['date'];
-        
         $prevision = Animal::prevision($dateCible);
-
-        Flight::redirect('/tableauDeBord');
     }
 
 }

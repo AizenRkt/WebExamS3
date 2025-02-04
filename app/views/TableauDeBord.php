@@ -115,7 +115,7 @@
                                                         <th>status</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="animalTableBody">
                                                     <?php foreach ($animaux as $x) { ?>
                                                     <tr>
                                                         <td><img id="animalPhoto" src="<?= Flight::base() ?>/public/img/upload/<?= $x['photoProfil'] ?>" alt="un animal"></td>
@@ -153,9 +153,9 @@
                             </div>
                             <div class="card-content pb-4">
                                 <div class="px-4">
-                                <form id="dateFilterForm" action="<?= Flight::base() ?>/prevision" method="get">
+                                <form id="dateFilterForm" method="get">
                                     <input type="date" id="dateInput" name="date" value="<?= date('Y-m-d') ?>" />
-                                    <button class='btn btn-block btn-xl btn-outline-primary font-bold mt-3'>filtrer par date</button>
+                                    <button class='btn btn-block btn-xl btn-outline-primary font-bold mt-3'>simuler</button>
                                 </form>                            
                                 </div>
                             </div>
@@ -170,41 +170,43 @@
 <script src="<?= Flight::base() ?>/public/assets/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script src="<?= Flight::base() ?>/public/assets/assets/compiled/js/app.js"></script>
 <script>
-    // Fonction pour appeler l'API de prévision via AJAX
-    function updatePrevision(date) {
-        $.ajax({
-            url: '/prevision', 
-            type: 'GET',
-            data: { date: date },  
-            success: function(response) {
-                let animals = JSON.parse(response);
+        function updatePrevision(date) {
+            $.ajax({
+                url: '<?= Flight::base() ?>/prevision', 
+                type: 'GET',
+                data: { date: date },  
+                success: function(response) {
+                    let animals = JSON.parse(response);
 
-                let tableBody = $("#animalTable tbody");
-                tableBody.empty(); 
+                    let tableBody = $("#animalTableBody");
+                    tableBody.empty();
 
-                animals.forEach(function(animal) {
-                    tableBody.append(`
-                        <tr>
-                            <td><img id="animalPhoto" src="/public/img/upload/${animal.photoProfil}" alt="un animal"></td>
-                            <td>${animal.idAnimal}</td>
-                            <td>${animal.nom}</td>
-                            <td>${animal.espece}</td>
-                            <td>${animal.poids}</td>
-                        </tr>
-                    `);
-                });
-            },
-            error: function() {
-                alert("Une erreur est survenue lors de l'actualisation des données.");
-            }
+                    animals.forEach(function(animal) {
+                        tableBody.append(`
+                            <tr>
+                                <td><img id="animalPhoto" src="/public/img/upload/${animal.photoProfil}" alt="un animal"></td>
+                                <td>${animal.nom}</td>
+                                <td>${animal.espece}</td>
+                                <td>${animal.poids}</td>
+                                <td>${animal.status}</td>
+                            </tr>
+                        `);
+                    });
+                },
+                error: function() {
+                    alert("Une erreur est survenue lors de l'actualisation des données.");
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            // Attacher l'événement au formulaire
+            $('#dateFilterForm').on('submit', function(event) {
+                event.preventDefault(); // Empêche la soumission du formulaire
+
+                let dateCible = $("#dateInput").val(); // Récupère la date sélectionnée
+                updatePrevision(dateCible); // Appelle la fonction AJAX pour mettre à jour le tableau
+            });
         });
-    }
-
-    $(document).ready(function() {
-        $("#updatePrevisionButton").on('click', function() {
-            let dateCible = $("#dateInput").val(); 
-            updatePrevision(dateCible);
-        });
-    });
-</script>
+    </script>
 </html>

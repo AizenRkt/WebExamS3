@@ -43,8 +43,6 @@ $router->get('/animalAchat', [ $AnimalController, 'AnimalAchat' ]);
 $router->get('/animalVente', [ $AnimalController, 'AnimalVente' ]);
 $router->post('/t-AnimalAchat', [ $AnimalController, 'AddAnimal' ]);
 $router->get('/t-AnimalVente', [ $AnimalController, 'VendreAnimal' ]);
-$router->get('/animalNourrissage', [ $AnimalController, 'AnimalNourrissage' ]);
-$router->post('/t-AnimalNourrissage', [ $AnimalController, 'tAnimalNourrissage' ]);
 
 $tableauController = new TableauDeBordController();
 $router->get('/tableauDeBord', [ $tableauController, 'tableauBord' ]);
