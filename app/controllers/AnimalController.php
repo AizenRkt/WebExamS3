@@ -87,14 +87,14 @@ class AnimalController {
                     $uploadedPaths = AnimalController::uploadPhotos($_FILES['photos']);
                     
                     if (isset($uploadedPaths['error'])) {
-                        //Flight::redirect('/animalAchat?error=' . $uploadedPaths['error']);
+                        Flight::redirect('/animalAchat?error=' . $uploadedPaths['error']);
                     }
                     
                     AnimalController::insertPhotos($uploadedPaths, $id);
                 }
-                //Flight::redirect('/animalAchat?success=New animal added');
+                Flight::redirect('/animalAchat?success=New animal added');
             }else{
-                //Flight::redirect('/animalAchat?error=inexpected error');
+                Flight::redirect('/animalAchat?error=inexpected error');
             }
 
         } else {
