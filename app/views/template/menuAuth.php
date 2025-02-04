@@ -7,10 +7,6 @@
                     <img src="<?= Flight::base() ?>/public/assets/img/airbnb.png" alt="logo" class="logo-img">
                 </a>
 
-                <u class="nav navbar-nav">
-                    <li><a href="<?= Flight::base() ?>/adminLog">s'identifier en tant qu'admin</a></li>
-                </u>
-
                 <div class="profile-container navbar-right">
                     <button class="profile-button" onclick="toggleDropdown()">
                             <i style="color: #717171;" class="glyphicon glyphicon-align-justify"></i>

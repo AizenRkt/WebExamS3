@@ -72,8 +72,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                                <h6 class="text-muted font-semibold">un truc</h6>
-                                                <h6 class="font-extrabold mb-0">80.000</h6>
+                                                <h6 class="text-muted font-semibold">status</h6>
+                                                <h6 class="font-extrabold mb-0">fermier</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -109,20 +109,20 @@
                                                 <thead>
                                                     <tr>
                                                         <th>photo</th>  
-                                                        <th>Id de l'animal</th>
                                                         <th>nom</th>
                                                         <th>type de l'animal</th>
                                                         <th>poids</th>
+                                                        <th>status</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <?php foreach ($animaux as $x) { ?>
                                                     <tr>
                                                         <td><img id="animalPhoto" src="<?= Flight::base() ?>/public/img/upload/<?= $x['photoProfil'] ?>" alt="un animal"></td>
-                                                        <td><?= $x['idAnimal'] ?></td>
                                                         <td><?= $x['nom'] ?></td>
                                                         <td><?= $x['espece'] ?></td>
                                                         <td><?= $x['poids'] ?></td>
+                                                        <td><?= $x['status'] ?></td>
                                                     </tr>
                                                     <?php } ?>
                                                 </tbody>
@@ -141,8 +141,8 @@
                                         <img src="<?= Flight::base() ?>/public/assets/assets/compiled/jpg/1.jpg" alt="Face 1">
                                     </div>
                                     <div class="ms-3 name">
-                                        <h5 class="font-bold">Sedera</h5>
-                                        <h6 class="text-muted mb-0">@SederaLeFermier</h6>
+                                        <h5 class="font-bold">Patrick / Sedera / Jaona</h5>
+                                        <h6 class="text-muted mb-0">@3658 / @3343 / @3253</h6>
                                     </div>
                                 </div>
                             </div>
@@ -153,7 +153,7 @@
                             </div>
                             <div class="card-content pb-4">
                                 <div class="px-4">
-                                <form id="dateFilterForm" action="#" method="GET">
+                                <form id="dateFilterForm" action="<?= Flight::base() ?>/prevision" method="get">
                                     <input type="date" id="dateInput" name="date" value="<?= date('Y-m-d') ?>" />
                                     <button class='btn btn-block btn-xl btn-outline-primary font-bold mt-3'>filtrer par date</button>
                                 </form>                            
@@ -169,4 +169,42 @@
 <script src="<?= Flight::base() ?>/public/assets/assets/static/js/components/dark.js"></script>
 <script src="<?= Flight::base() ?>/public/assets/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script src="<?= Flight::base() ?>/public/assets/assets/compiled/js/app.js"></script>
+<script>
+    // Fonction pour appeler l'API de prévision via AJAX
+    function updatePrevision(date) {
+        $.ajax({
+            url: '/prevision', 
+            type: 'GET',
+            data: { date: date },  
+            success: function(response) {
+                let animals = JSON.parse(response);
+
+                let tableBody = $("#animalTable tbody");
+                tableBody.empty(); 
+
+                animals.forEach(function(animal) {
+                    tableBody.append(`
+                        <tr>
+                            <td><img id="animalPhoto" src="/public/img/upload/${animal.photoProfil}" alt="un animal"></td>
+                            <td>${animal.idAnimal}</td>
+                            <td>${animal.nom}</td>
+                            <td>${animal.espece}</td>
+                            <td>${animal.poids}</td>
+                        </tr>
+                    `);
+                });
+            },
+            error: function() {
+                alert("Une erreur est survenue lors de l'actualisation des données.");
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        $("#updatePrevisionButton").on('click', function() {
+            let dateCible = $("#dateInput").val(); 
+            updatePrevision(dateCible);
+        });
+    });
+</script>
 </html>

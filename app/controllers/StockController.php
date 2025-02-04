@@ -22,19 +22,20 @@ class StockController {
     }
 
     public function stockerAliments() {
-        if (!isset($_POST['nom']) || !isset($_POST['quantite'])) {
-            Flight::redirect('/stock?error=missing_data'); // Redirection avec un message d'erreur
+        if (!isset($_GET['idAliment']) || !isset($_GET['quantite'])) {
+            Flight::redirect('/stock?error=missing_data');
             return;
         }
     
-        $idAliment = $_POST['nom']; // Correspond à idAliment
-        $quantite = $_POST['quantite'];
+        $idAliment = $_GET['idAliment'];
+        $quantite = $_GET['quantite'];
         $aliment = Aliment::getById($idAliment);
+        
         $prix_unitaire = $aliment['prix'];
         $montant = $prix_unitaire * $quantite;
 
         if (empty($idAliment) || empty($quantite) || $quantite <= 0) {
-            Flight::redirect('/achatAliment?error=invalid_data'); // Redirection en cas de données invalides
+            Flight::redirect('/achatAliment?error=invalid_data');
             return;
         }
 
@@ -42,7 +43,7 @@ class StockController {
             Flight::redirect('/achatAliment?error=capital insuffisant'); 
             return;
         }
-    
+        
         $result = Stock::insert($idAliment, $quantite);
         Capital::retirerCapital($montant);
 

@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Animal;
+use app\models\Capital;
 use app\models\TypeAnimal;
 use app\models\Simulation;
 
@@ -44,14 +45,10 @@ class Controller {
         session_destroy();
         Flight::redirect('/');
     }
-
-    public function marketplace() {
-        Flight::render('marketplace');
+    
+    public function reset() {
+        Capital::resetDatabaseExceptOneTable("simulationDate");
+        Flight::redirect('/');
     }
 
-    //Simulation de date 
-    public function avancerJour(){
-        $date = Simulation::avancerJour();
-        Flight::redirect('/animalNourrissage');
-    }
 }

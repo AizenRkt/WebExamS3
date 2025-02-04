@@ -63,5 +63,41 @@ class Capital {
             ':montant' => $montant
         ]);
     }
+
+    public static function insertQuery($query) {
+        $db = Flight::db();
+        $db->exec($query);
+    }
     
+    public static function resetDatabaseExceptOneTable($excludeTable) {
+        $db = Flight::db();
+        
+        $sql = "SHOW TABLES";
+        $tables = $db->query($sql)->fetchAll(PDO::FETCH_COLUMN);
+        
+        $db->exec("SET foreign_key_checks = 0");
+        
+        foreach ($tables as $table) {
+            if ($table != $excludeTable) {
+                $db->exec("DELETE FROM $table");
+                
+                $db->exec("ALTER TABLE $table AUTO_INCREMENT = 1");
+            }
+        }
+        
+        $db->exec("SET foreign_key_checks = 1");
+    
+        $sql = "INSERT INTO simulationDate (date_simulee) VALUES ('2025-02-03')";
+        Capital::insertQuery($sql);
+        
+        $sql = "INSERT INTO typeTransaction (titre) VALUES ('Achat')";
+        Capital::insertQuery($sql);
+        
+        $sql = "INSERT INTO typeTransaction (titre) VALUES ('Vente')";
+        Capital::insertQuery($sql);
+        
+        return "Base de données réinitialisée sauf la table '$excludeTable'.";
+    }
+    
+
 }

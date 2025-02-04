@@ -21,22 +21,15 @@
             </div>
         </div>
         <div id="formulaire">
-            <h4 id="logSi" style="font-size: 15px;">pas de compte, <a href="<?= Flight::base() ?>/sign" style="color: #85B172;">inscription</a></h4>
 
             <form action="<?= Flight::base() ?>/t-connexion" method="post">
-                <div class="ensemble">
-					<span class="glyphicon glyphicon-envelope iconForm"></span>
-					<div class="inputbox">
-						<input type="text" name="email" class="form-control" required>
-						<span>email</span>
-					</div>    
-                </div>
+                <div class="ensemble"></div>
 
-                <div class="ensemble">
+                <div class="ensemble" style="margin-top: 70px;">
 					<span class="glyphicon glyphicon-lock iconForm"></span>
 					<div class="inputbox">
-					<input type="password" name="pwd" class="form-control" required>
-						<span>mot de passe</span>
+					<input type="text" name="capital" class="form-control" required>
+						<span>entrer votre capital de départ</span>
 					</div>
                 </div>
 

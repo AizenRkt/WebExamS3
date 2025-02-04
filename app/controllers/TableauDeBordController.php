@@ -20,11 +20,20 @@ class TableauDeBordController {
         $animals = Animal::getAnimalsNonVendu();
         foreach ($animals as &$x) {
             $x['espece'] = Animal::getAnimalType($x['idAnimal'])['espece'];
+            $x['status'] = "à vous";
             $x['photoProfil'] = Animal::getPhotos($x['idAnimal'])[0]['img'];
         }
 
         $nbAnimal = count($animals);
         Flight::render('TableauDeBord',['dateNow' => $dateSimule,'capital' => $capital,'nb_animals' => $nbAnimal, 'animaux' => $animals]);
+    }
+
+    public function prevision() {
+        $dateCible = $_GET['date'];
+        
+        $prevision = Animal::prevision($dateCible);
+
+        Flight::redirect('/tableauDeBord');
     }
 
 }

@@ -25,19 +25,13 @@ use flight\net\Router;
 });*/
 
 $Auth = new AuthController();
-$router->get('/adminLog', [ $Auth, 'adminLog' ]);
-$router->post('/t-adminLog', [ $Auth, 'authAdmin' ]);
-
 $router->get('/', [ $Auth, 'log' ]);
-$router->post('/t-connexion', [ $Auth, 'authVerif' ]);
-$router->get('/sign', [ $Auth, 'sign' ]);
-$router->post('/t-inscription', [ $Auth, 'authInscription' ]);
+$router->post('/t-connexion', [ $Auth, 'connexion' ]);
 
 $controller = new Controller();
 $router->get('/acceuil', [ $controller, 'acceuil' ]);
 $router->get('/logout', [ $controller, 'logout' ]);
-$router->get('/marketplace', [ $controller, 'marketplace' ]);
-$router->get('/avancer-jour', [ $controller, 'avancerJour' ]);
+$router->get('/resetData', [ $controller, 'reset' ]);
 
 $typeAnimalController = new TypeAnimalController();
 $router->get('/typeAnimalInsert', [ $typeAnimalController, 'typeAnimalInsert' ]);
@@ -54,10 +48,11 @@ $router->post('/t-AnimalNourrissage', [ $AnimalController, 'tAnimalNourrissage' 
 
 $tableauController = new TableauDeBordController();
 $router->get('/tableauDeBord', [ $tableauController, 'tableauBord' ]);
+$router->get('/prevision', [ $tableauController, 'prevision' ]);
 
 $StockController = new StockController();
 $router->get('/achatAliment', [ $StockController, 'insertStock' ]);
-$router->post('/stock-aliment', [ $StockController, 'stockerAliments' ]);
+$router->get('/stock-aliment', [ $StockController, 'stockerAliments' ]);
 
 
 // $router->get('/', \app\controllers\WelcomeController::class.'->home'); 

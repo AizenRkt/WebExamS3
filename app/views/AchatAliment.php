@@ -33,7 +33,7 @@
                             </div>
                             <div class="card-content">
                                 <div class="card-body">
-                                    <form action="<?= Flight::base() ?>/stock-aliment" method="post" class="form form-horizontal">
+                                    <form action="<?= Flight::base() ?>/stock-aliment" method="get" class="form form-horizontal">
                                         <div class="form-body">
                                             <div class="row">
                                                 
@@ -41,7 +41,7 @@
                                                     <label>Nom de l'aliment</label>
                                                 </div>
                                                 <div class="col-md-8 form-group">
-                                                    <select id="nom" class="form-control" name="nom">
+                                                    <select id="nom" class="form-control" name="idAliment">
                                                         <option value="" >quel type d'aliment</option>
                                                         <?php foreach ($aliments as $x) { ?>
                                                             <option value="<?= $x['idAliment'] ?>"><?= $x['nom'] ?></option>

@@ -32,10 +32,8 @@ class Aliment {
     // Récupérer un aliment par ID
     public static function getById($id) {
         $db = Flight::db();
-        $sql = "SELECT * FROM aliment WHERE idAliment = :id";
-        $stmt = $db->prepare($sql);
-        $stmt->execute([':id' => $id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $sql = "SELECT * FROM aliment WHERE idAliment = $id";
+        return $db->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
 
     // Mettre à jour un aliment

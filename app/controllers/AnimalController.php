@@ -123,38 +123,5 @@ class AnimalController {
             Flight::redirect('/animalVente?error=error !');
         }
         
-    }
-
-    public function AnimalNourrissage() {
-        $mesAnimaux = Animal::getAnimalsNonVendu();
-        $mesAliments = Aliment::getAll();
-        $dateSimule = Simulation::getDateSimulee();
-        foreach ($mesAnimaux as &$x) {
-            $x['espece'] = Animal::getAnimalType($x['idAnimal'])['espece'];
-        }
-        Flight::render('AnimalNourrissage', ['animaux' => $mesAnimaux,'dateNow' => $dateSimule,'aliments' => $mesAliments]);
-    }
- 
-    public function tAnimalNourrissage() {
-        if (!empty($_POST['idAnimal']) && !empty($_POST['idAliment'])) {
-            $idAnimal = $_POST['idAnimal'];
-            $idAliment = $_POST['idAliment'];
-            
-            try {
-                $idInsertion = Alimentation::insert($idAnimal, $idAliment);
-    
-                if ($idInsertion) {
-                    Flight::redirect('/animalNourrissage?success=Votre animal a été nourri');
-                } else {
-                    Flight::redirect('/animalNourrissage?error=Erreur lors de l enregistrement');
-                }
-            } catch (Exception $e) {
-                Flight::redirect('/animalNourrissage?error=Exception: ' . urlencode($e->getMessage()));
-            }
-            
-        } else {
-            Flight::redirect('/animalNourrissage?error=Champs obligatoires manquants');
-        }
-    }    
-    
+    }   
 }

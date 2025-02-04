@@ -11,8 +11,7 @@ class Stock {
 
     public static function insert($idAliment, $quantite) {
         $db = Flight::db();
-        $dateAjout = date('Y-m-d'); // Date du jour
-
+        $dateAjout = date('Y-m-d');
         $sqlCheck = "SELECT idStock, quantite_stock FROM stock WHERE idAliment = :idAliment";
         $stmtCheck = $db->prepare($sqlCheck);
         $stmtCheck->execute([':idAliment' => $idAliment]);
