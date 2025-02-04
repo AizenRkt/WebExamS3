@@ -50,7 +50,7 @@
                                                     <tr>
                                                         <td><?= $x['idAnimal'] ?></td>
                                                         <td><?= $x['nom'] ?></td>
-                                                        <td><?= $x['idTypeAnimal'] ?></td>
+                                                        <td><?= $x['espece'] ?></td>
                                                         <td><?= $x['poids'] ?></td>
                                                         <td class="button">
                                                             <a href="<?= Flight::base() ?>/t-animalVente?idAnimal=<?= $x['idAnimal'] ?>" class="btn btn-primary rounded-pill">vendre</a>

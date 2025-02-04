@@ -47,6 +47,9 @@ class AnimalController {
     
     public function AnimalVente() {
         $mesAnimaux = Animal::getAnimalsNonVendu();
+        foreach ($mesAnimaux as &$x) {
+            $x['espece'] = Animal::getAnimalType($x['idAnimal'])['espece'];
+        }
         Flight::render('AnimalVente', ['animaux' => $mesAnimaux]);
     }
 
