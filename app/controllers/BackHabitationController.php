@@ -76,27 +76,6 @@ class BackHabitationController {
         return true;
     }
 
-    /*public function tHabitationAjout() {
-        $nom = $_POST['nom'];
-        $type = $_POST['idType'];
-        $loyer = $_POST['loyer'];
-        $quartier = $_POST['quartier'];
-        $description = $_POST['description'];
-
-        if (isset($_FILES['photos']) && !empty($_FILES['photos']['name'][0])) {
-            $uploadedPaths = BackHabitationController::uploadPhotos($_FILES['photos']);
-            
-            if (isset($uploadedPaths['error'])) {
-                Flight::redirect('/habitationAjout?error=' . $uploadedPaths['error']);
-            }
-            Habitation::insert($type, $loyer, $quartier, $description, $nom);                        
-            BackHabitationController::insertPhotos($uploadedPaths, Habitation::getMaxId());
-            Flight::redirect('/habitationList'); 
-        } else {
-            Flight::redirect('/habitationForm?error=Veuillez télécharger au moins une photo.');
-        }
-    }*/
-
     public function tHabitationAjout() {
         $nom = $_POST['nom'];
         $type = $_POST['idType'];
@@ -119,7 +98,6 @@ class BackHabitationController {
         Flight::redirect('/habitationList');
     }
     
-
     public function habitationDel() {
         $id = $_GET['id'];
         Habitation::delete($id);

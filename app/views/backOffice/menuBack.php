@@ -10,18 +10,10 @@
         <div class="sidebar-menu">
             <ul class="menu">
 
-                <li class="sidebar-title">Dashboard</li>
                 <li class="sidebar-item">
-                    <a href="<?= Flight::base() ?>/animalNourrissage" class='sidebar-link'>
-                        <i class="bi bi-egg-fried"></i>
-                        <span>Nourrir mes animaux</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a href="index.html" class='sidebar-link'>
+                    <a href="<?= Flight::base() ?>/tableauDeBord" class='sidebar-link'>
                         <i class="bi bi-graph-up"></i>
-                        <span>Simuler la situation de l'élevage</span>
+                        <span>tableau de bord</span>
                     </a>
                 </li>  
 
