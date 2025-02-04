@@ -31,7 +31,8 @@ class TypeAnimalController {
                         $values['prix_vente_kg'],
                         $values['poids_max'],
                         $values['jours_sans_manger'],
-                        $values['perte_poids_jour']
+                        $values['perte_poids_jour'],
+                        $values['quota_journalier']
                     );
                 } else {
                     TypeAnimal::update(
@@ -41,7 +42,8 @@ class TypeAnimalController {
                         $values['prix_vente_kg'],
                         $values['poids_max'],
                         $values['jours_sans_manger'],
-                        $values['perte_poids_jour']
+                        $values['perte_poids_jour'],
+                        $values['quota_journalier']
                     );
                 }
             }

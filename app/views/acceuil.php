@@ -34,7 +34,7 @@
                         <div class="listing-info">
                             <h3><?= $x['idAnimal'] ?></h3>
                             <p><?= $x['nom'] ?></p>
-                            <!-- <p class="price"><?= $x['loyer'] ?>$ par nuit</p> -->
+                            
                         </div>
                     </div>
                 </div>

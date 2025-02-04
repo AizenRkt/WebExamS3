@@ -5,6 +5,7 @@ use app\controllers\AuthController;
 use app\controllers\Controller;
 use app\controllers\TypeAnimalController;
 use app\controllers\AnimalController;
+use app\controllers\TableauDeBordController;
 //importation de model
 
 //importation lié flight
@@ -35,6 +36,7 @@ $controller = new Controller();
 $router->get('/acceuil', [ $controller, 'acceuil' ]);
 $router->get('/logout', [ $controller, 'logout' ]);
 $router->get('/marketplace', [ $controller, 'marketplace' ]);
+$router->get('/avancer-jour', [ $controller, 'avancerJour' ]);
 
 $typeAnimalController = new TypeAnimalController();
 $router->get('/typeAnimalInsert', [ $typeAnimalController, 'typeAnimalInsert' ]);
@@ -47,6 +49,10 @@ $router->get('/animalVente', [ $AnimalController, 'AnimalVente' ]);
 $router->post('/t-AnimalAchat', [ $AnimalController, 'AddAnimal' ]);
 $router->get('/t-AnimalVente', [ $AnimalController, 'VendreAnimal' ]);
 $router->get('/animalNourrissage', [ $AnimalController, 'AnimalNourrissage' ]);
+$router->post('/t-AnimalNourrissage', [ $AnimalController, 'tAnimalNourrissage' ]);
+
+$tableauController = new TableauDeBordController();
+$router->get('/tableauDeBord', [ $tableauController, 'tableauBord' ]);
 
 
 // $router->get('/', \app\controllers\WelcomeController::class.'->home'); 

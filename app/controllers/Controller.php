@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Animal;
 use app\models\TypeAnimal;
+use app\models\Simulation;
 
 use Flight;
 
@@ -46,5 +47,11 @@ class Controller {
 
     public function marketplace() {
         Flight::render('marketplace');
+    }
+
+    //Simulation de date 
+    public function avancerJour(){
+        $date = Simulation::avancerJour();
+        Flight::redirect('/animalNourrissage');
     }
 }

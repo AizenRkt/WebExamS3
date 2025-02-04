@@ -7,6 +7,7 @@ CREATE TABLE typeAnimal (
     poids_minimal_vente DECIMAL(10,2) NOT NULL,
     prix_vente_kg DECIMAL(10,2) NOT NULL,
     poids_max DECIMAL(10,2) NOT NULL,
+    quota_journalier DECIMAL(10,2) NOT NULL,
     jours_sans_manger INT NOT NULL,
     perte_poids_jour DECIMAL(5,2) NOT NULL
 );
@@ -62,6 +63,12 @@ CREATE TABLE ImageAnimal (
     FOREIGN KEY (idAnimal) REFERENCES animal(idAnimal) ON DELETE CASCADE
 );
 
+CREATE TABLE simulationDate (
+    idSimulation INT PRIMARY KEY AUTO_INCREMENT,
+    date_simulee DATE NOT NULL
+);
+
+
 INSERT INTO typeAnimal (espece, poids_minimal_vente, prix_vente_kg, poids_max, jours_sans_manger, perte_poids_jour) VALUES
 ('Boeuf', 150.00, 2.50, 1000.00, 10, 2.00),
 ('Mouton', 45.00, 3.00, 150.00, 8, 1.50),
@@ -94,3 +101,16 @@ INSERT INTO typeTransaction (titre) VALUES
 
 INSERT INTO capital (montant) VALUES
 (30000);
+
+INSERT INTO simulationDate (date_simulee) VALUES ('2025-02-03');
+
+INSERT INTO aliment (nom, gain_poids, img) VALUES
+('Foin', 1.50, 'images/foin.jpg'),
+('Maïs', 2.00, 'images/mais.jpg'),
+('Tourteau de soja', 3.00, 'images/tourteau_soja.jpg'),
+('Orge', 1.80, 'images/orge.jpg'),
+('Son de blé', 1.20, 'images/son_ble.jpg'),
+('Granulés pour volaille', 2.50, 'images/granules_volaille.jpg'),
+('Herbe fraîche', 1.00, 'images/herbe_fraiche.jpg'),
+('Paille', 0.50, 'images/paille.jpg');
+

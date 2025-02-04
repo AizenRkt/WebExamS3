@@ -11,10 +11,10 @@ class TypeAnimal {
     }
 
     // Insérer un nouveau type d'animal
-    public static function insert($espece, $poids_minimal_vente, $prix_vente_kg, $poids_max, $jours_sans_manger, $perte_poids_jour) {
+    public static function insert($espece, $poids_minimal_vente, $prix_vente_kg, $poids_max, $jours_sans_manger, $perte_poids_jour,$quota_journalier) {
         $db = Flight::db();
-        $sql = "INSERT INTO typeAnimal (espece, poids_minimal_vente, prix_vente_kg, poids_max, jours_sans_manger, perte_poids_jour) 
-                VALUES (:espece, :poids_minimal_vente, :prix_vente_kg, :poids_max, :jours_sans_manger, :perte_poids_jour)";
+        $sql = "INSERT INTO typeAnimal (espece, poids_minimal_vente, prix_vente_kg, poids_max, jours_sans_manger, perte_poids_jour,quota_journalier) 
+                VALUES (:espece, :poids_minimal_vente, :prix_vente_kg, :poids_max, :jours_sans_manger, :perte_poids_jour,:quota_journalier)";
         $stmt = $db->prepare($sql);
         $stmt->execute([
             ':espece' => $espece,
@@ -23,6 +23,7 @@ class TypeAnimal {
             ':poids_max' => $poids_max,
             ':jours_sans_manger' => $jours_sans_manger,
             ':perte_poids_jour' => $perte_poids_jour,
+            ':quota_journalier' => $quota_journalier,
         ]);
         return $db->lastInsertId();
     }
@@ -44,11 +45,11 @@ class TypeAnimal {
     }
 
     // Mettre à jour un type d'animal
-    public static function update($idTypeAnimal, $espece, $poids_minimal_vente, $prix_vente_kg, $poids_max, $jours_sans_manger, $perte_poids_jour) {
+    public static function update($idTypeAnimal, $espece, $poids_minimal_vente, $prix_vente_kg, $poids_max, $jours_sans_manger, $perte_poids_jour,$quota_journalier) {
         $db = Flight::db();
         $sql = "UPDATE typeAnimal 
                 SET espece = :espece, poids_minimal_vente = :poids_minimal_vente, prix_vente_kg = :prix_vente_kg, 
-                    poids_max = :poids_max, jours_sans_manger = :jours_sans_manger, perte_poids_jour = :perte_poids_jour 
+                    poids_max = :poids_max, jours_sans_manger = :jours_sans_manger, perte_poids_jour = :perte_poids_jour, quota_journalier = :quota_journalier
                 WHERE idTypeAnimal = :idTypeAnimal";
         $stmt = $db->prepare($sql);
         return $stmt->execute([
@@ -58,6 +59,7 @@ class TypeAnimal {
             ':poids_max' => $poids_max,
             ':jours_sans_manger' => $jours_sans_manger,
             ':perte_poids_jour' => $perte_poids_jour,
+            ':quota_journalier' => $quota_journalier,
             ':idTypeAnimal' => $idTypeAnimal,
         ]);
     }

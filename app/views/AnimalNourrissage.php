@@ -23,6 +23,13 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
+
+            <div class="d-flex justify-content-between align-items-center p-3">
+                <h5>Current date : <?= $dateNow ?></h5>
+                <form action="<?= Flight::base() ?>/avancer-jour" method="get">
+                    <button type="submit" class="btn btn-warning">Avancer d’un jour</button>
+                </form>
+            </div>
                 
             <div class="page-heading">
                 <section class="section">
@@ -33,37 +40,53 @@
                             </div>
                             <div class="card-content">
                                 <div class="card-body">
-                                <form action="<?= Flight::base() ?>/t-AnimalNourrissage" method="get" class="form form-horizontal" >
-                                    <div class="form-body">
-                                        <div class="row">
+                                    <form action="<?= Flight::base() ?>/t-AnimalNourrissage" method="post" class="form form-horizontal">
+                                        <div class="form-body">
+                                            <div class="row">
 
-                                            <div class="col-md-4">
-                                                <label>l'animal que vous voulez nourrir</label>
-                                            </div>
-                                            <div class="col-md-8 form-group">
-                                                <select name="idTypeAnimal" class="form-select" id="idType" required>
-                                                    <option value="" disabled selected>quelle est votre animal ?</option>
-                                                    <?php foreach ($animaux as $x) { ?>
-                                                        <option value="<?= $x['idAnimal'] ?>"><?= $x['espece'] ?> / <?= $x['nom'] ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
-                           
-                                            <div class="col-md-4">
-                                                <label>date</label>
-                                            </div>
-                                            <div class="col-md-8 form-group">
-                                                <input type="date" id="date_nourrisage" class="form-control" name="date_nourrisage" placeholder="la date à laquelle vous nourrissez votre animal" required>
-                                            </div>
+                                                <!-- Sélection de l'animal -->
+                                                <div class="col-md-4">
+                                                    <label>Animal à nourrir</label>
+                                                </div>
+                                                <div class="col-md-8 form-group">
+                                                    <select name="idAnimal" class="form-select" id="idAnimal" required>
+                                                        <option value="" disabled selected>Choisissez un animal</option>
+                                                        <?php foreach ($animaux as $x) { ?>
+                                                            <option value="<?= $x['idAnimal'] ?>"><?= $x['espece'] ?> / <?= $x['nom'] ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
 
-                                            <div class="col-sm-12 d-flex justify-content-end">
-                                                <button type="submit" class="btn btn-primary me-1 mb-1">valider</button>
-                                                <button type="reset" class="btn btn-light-secondary me-1 mb-1">reset</button>
+                                                <!-- Sélection de l'aliment -->
+                                                <div class="col-md-4">
+                                                    <label>Aliment</label>
+                                                </div>
+                                                <div class="col-md-8 form-group">
+                                                    <select name="idAliment" class="form-select" id="idAliment" required>
+                                                        <option value="" disabled selected>Choisissez un aliment</option>
+                                                        <?php foreach ($aliments as $a) { ?>
+                                                            <option value="<?= $a['idAliment'] ?>"><?= $a['nom'] ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+
+                                                <!-- Date de nourrissage (readonly) -->
+                                                <div class="col-md-4">
+                                                    <label>Date de nourrissage</label>
+                                                </div>
+                                                <div class="col-md-8 form-group">
+                                                    <input type="date" id="date_nourrissage" class="form-control" name="date_nourrissage"
+                                                        value="<?= $dateNow ?>" readonly>
+                                                </div>
+
+                                                <!-- Boutons de soumission -->
+                                                <div class="col-sm-12 d-flex justify-content-end">
+                                                    <button type="submit" class="btn btn-primary me-1 mb-1">Valider</button>
+                                                    <button type="reset" class="btn btn-light-secondary me-1 mb-1">Réinitialiser</button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </form>
-
+                                    </form>
                                 </div>
                             </div>
                         </div>
