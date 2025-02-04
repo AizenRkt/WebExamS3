@@ -109,5 +109,14 @@ class Animal {
         return $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
     
+    public static function getAnimalType($id) {
+        $db = Flight::db();
+        $sql = "SELECT ta.espece as espece
+                FROM animal a
+                JOIN typeAnimal ta ON a.idTypeAnimal = ta.idTypeAnimal
+                WHERE a.idAnimal = $id";
+        
+        return $db->query($sql)->fetch(PDO::FETCH_ASSOC);
+    }
     
 }

@@ -60,9 +60,35 @@ class AnimalController {
 
             Flight::redirect('/animalVente?success=Animal vendu !');
         } else {
-            Flight::redirect('/animalVente?error=error !'); // En cas d'erreur
+            Flight::redirect('/animalVente?error=error !');
         }
         
+    }
+
+    public function AnimalNourrissage() {
+        $mesAnimaux = Animal::getAnimalsNonVendu();
+        foreach ($mesAnimaux as &$x) {
+            $x['espece'] = Animal::getAnimalType($x['idAnimal'])['espece'];
+        }
+        Flight::render('AnimalNourrissage', ['animaux' => $mesAnimaux]);
+    }
+    
+
+    public function tAnimalNourrissage() {
+        if (!empty($_GET['idAnimal']) && !empty($_GET['date'])) {
+            $idAnimal = $_GET['idAnimal'];
+            $date_nourrissage = $_GET['date'];
+
+            if(true) {
+                
+                Flight::redirect('/animalAchat?success=votre animal a été nourri');
+            }else{
+                Flight::redirect('/animalAchat?error=inexpected error');
+            }
+
+        } else {
+            Flight::redirect('/animalAchat?error=missing_fields');
+        }
     }
     
 }

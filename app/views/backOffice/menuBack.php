@@ -12,16 +12,9 @@
 
                 <li class="sidebar-title">Dashboard</li>
                 <li class="sidebar-item">
-                    <a href="index.html" class='sidebar-link'>
+                    <a href="<?= Flight::base() ?>/animalNourrissage" class='sidebar-link'>
                         <i class="bi bi-egg-fried"></i>
                         <span>Nourrir mes animaux</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a href="index.html" class='sidebar-link'>
-                        <i class="bi bi-eye"></i>
-                        <span>Voir mes animaux</span>
                     </a>
                 </li>
 
